@@ -36,10 +36,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <meta name="msapplication-TileImage" content="images/icon-inverted-3x.png">
 
   <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-  <script src="/bower_components/web-animations-js/web-animations-next.min.js"></script>
+  <script src="bower_components/web-animations-js/web-animations-next.min.js"></script>
   <link rel="import" href="bower_components/platinum-sw/platinum-sw-elements.html">
   <link rel="import" href="bower_components/polymerfire/firebase-app.html">
-  <link rel="import" href="firebase/note-app.html">
+  <link rel="import" href="note-app.html">
 
   <style>
     body {
@@ -55,7 +55,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       skip-waiting
       clients-claim
       reload-on-install
-      href="../sw-import.js">
+      href="sw-import.js">
     <platinum-sw-cache
         default-cache-strategy="networkFirst">
     </platinum-sw-cache>
@@ -64,9 +64,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <!-- Configure Firebase app: -->
   <firebase-app
       name="notes"
-      api-key="AIzaSyBzKhxNa2k9pA3m9_Ji3POFAKyGGFnyshI"
-      auth-domain="note-app-firebase-3a483.firebaseapp.com"
-      database-url="https://note-app-firebase-3a483.firebaseio.com">
+      api-key="AIzaSyBDNzJnlsAWTWCWYj5s7e9H91spLMBpu-Y"
+      auth-domain="notes-28ad0.firebaseapp.com"
+      database-url="https://notes-28ad0.firebaseio.com">
   </firebase-app>
 
   <!-- Instantiate the Notes app: -->

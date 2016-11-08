@@ -8,9 +8,9 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../note-app/na-elements.html">
-<link rel="import" href="/bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
-<link rel="import" href="/bower_components/polymerfire/polymerfire.html">
+<link rel="import" href="src/note-app/na-elements.html">
+<link rel="import" href="bower_components/app-storage/app-indexeddb-mirror/app-indexeddb-mirror.html">
+<link rel="import" href="bower_components/polymerfire/polymerfire.html">
 
 <dom-module id="note-app">
   <template>
@@ -39,18 +39,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         id="query"
         app-name="notes"
         path="/notes/[[user.uid]]"
-        data="{{data}}">
+        data="{{notes}}">
     </firebase-query>
 
     <app-indexeddb-mirror
         session="[[user.uid]]"
         key="notes"
-        data="{{data}}"
-        persisted-data="{{persistedData}}">
+        data="{{notes}}"
+        persisted-data="{{persistedNotes}}">
     </app-indexeddb-mirror>
 
+
     <div class="notes">
-      <template is="dom-repeat" items="[[persistedData]]" as="note">
+      <template is="dom-repeat" items="[[persistedNotes]]" as="note">
         <na-note
             id$="[[note.$key]]"
             title="[[note.title]]"

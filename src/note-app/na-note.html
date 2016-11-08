@@ -1,5 +1,6 @@
-<link rel="import" href="/bower_components/paper-styles/shadow.html">
-<link rel="import" href="/bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/paper-styles/shadow.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/marked-element/marked-element.html">
 <dom-module id="na-note">
   <template>
     <style>
@@ -55,10 +56,17 @@
         id="title"
         class$="[[emptyClass(title, editable)]]"
         contenteditable$="[[editable]]"></h1>
-    <p
-        id="body"
+
+     <p id="body"
         class$="[[emptyClass(body, editable)]]"
         contenteditable$="[[editable]]"></p>
+
+    <marked-element
+        id="editor" markdown="{{body}}"
+        class$="[[emptyClass(body, editable)]]"
+        contenteditable$="[[editable]]"></marked-element>
+     
+
     <!-- <p class="empty" hidden$="[[!propertiesAreEmpty(title, body, editable)]]">Tap to edit this note...</p> -->
   </template>
   <script>
@@ -68,6 +76,7 @@
       properties: {
         editable: {
           type: Boolean,
+          observer : '_editableChanged',
           reflectToAttribute: true,
           value: false
         },
@@ -118,13 +127,25 @@
       updateTextContent(title, body) {
         console.log(arguments);
         this.$.title.textContent = title;
+        this.$.editor.markdown = body;
         this.$.body.textContent = body;
+      },
+
+      _editableChanged(){
+        if(!this.editable){
+          this.$.body.style.display='none';
+          this.$.editor.style.display='block';
+        } else {
+          this.$.body.style.display='block';
+          this.$.editor.style.display='none';
+       }
       },
 
       onInput() {
         this.async(function() {
-          this.title = this.$.title.innerText;
+          this.title = this.$.title.innerText;          
           this.body = this.$.body.innerText;
+
         });
       }
     })
